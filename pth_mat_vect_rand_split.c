@@ -81,12 +81,14 @@ int main(int argc, char* argv[]) {
    Print_vector("Generamos", x, n); 
 #  endif
 
+/****** Inicio Seccion en Paralelo *************************/
    for (thread = 0; thread < thread_count; thread++)
       pthread_create(&thread_handles[thread], NULL,
          Pth_mat_vect, (void*) thread);
 
    for (thread = 0; thread < thread_count; thread++)
       pthread_join(thread_handles[thread], NULL);
+/****** Finc Seccion en Paralelo *************************/
 
 #  ifdef DEBUG
    Print_vector("El producto es ", y, m); 
@@ -102,7 +104,7 @@ int main(int argc, char* argv[]) {
 
 /*------------------------------------------------------------------ */
 void Usage (char* prog_name) {
-   fprintf(stderr, "usage: %s <thread_count> <m> <n>\n", prog_name);
+   fprintf(stderr, "usar: %s <cantidad de theads> <m> <n>\n", prog_name);
    exit(0);
 }  /* Usage */
 
